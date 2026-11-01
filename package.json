@@ -1,0 +1,130 @@
+{
+  "name": "@helder-studio/llm-lens",
+  "version": "0.0.0",
+  "description": "See every LLM call your app makes, on the device: model, tokens, cost, time to first token, tool calls. OpenAI, Anthropic, Gemini. React Native and web.",
+  "keywords": [
+    "llm",
+    "ai",
+    "openai",
+    "anthropic",
+    "claude",
+    "gemini",
+    "devtools",
+    "react-native",
+    "react",
+    "tokens",
+    "cost"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "helder-studio",
+    "url": "https://www.helderstudio.com/en/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/helder-studio/llm-lens.git"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "react-native": {
+        "import": {
+          "types": "./dist/native.d.ts",
+          "default": "./dist/native.js"
+        },
+        "require": {
+          "types": "./dist/native.d.cts",
+          "default": "./dist/native.cjs"
+        }
+      },
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./noop": {
+      "import": {
+        "types": "./dist/noop.d.ts",
+        "default": "./dist/noop.js"
+      },
+      "require": {
+        "types": "./dist/noop.d.cts",
+        "default": "./dist/noop.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.cts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check .",
+    "format": "biome check --write .",
+    "test": "vitest run",
+    "check:pkg": "publint && attw --pack . --profile node16",
+    "size": "size-limit",
+    "verify": "pnpm typecheck && pnpm lint && pnpm test && pnpm build && pnpm check:pkg && pnpm size",
+    "changeset": "changeset",
+    "release": "node scripts/publish.mjs",
+    "coverage": "vitest run --coverage --coverage.include=src/**"
+  },
+  "size-limit": [
+    {
+      "path": "dist/index.js",
+      "limit": "6 kB",
+      "ignore": [
+        "react"
+      ]
+    },
+    {
+      "path": "dist/native.js",
+      "limit": "7 kB",
+      "ignore": [
+        "react",
+        "react-native"
+      ]
+    }
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "packageManager": "pnpm@11.5.2",
+  "peerDependencies": {
+    "react": ">=18",
+    "react-native": ">=0.76"
+  },
+  "peerDependenciesMeta": {
+    "react-native": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
+    "@biomejs/biome": "^2.6.4",
+    "@changesets/cli": "^3.0.3",
+    "@size-limit/preset-small-lib": "^14.3.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitest/coverage-v8": "^5.0.5",
+    "happy-dom": "^21.0.4",
+    "publint": "^0.3.25",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-native": "0.88.1",
+    "size-limit": "^14.3.0",
+    "tsup": "^9.0.0",
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.5"
+  }
+}
