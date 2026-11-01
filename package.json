@@ -1,6 +1,6 @@
 {
   "name": "@helder-studio/llm-lens",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "See every LLM call your app makes, on the device: model, tokens, cost, time to first token, tool calls. OpenAI, Anthropic, Gemini. React Native and web.",
   "keywords": [
     "llm",
